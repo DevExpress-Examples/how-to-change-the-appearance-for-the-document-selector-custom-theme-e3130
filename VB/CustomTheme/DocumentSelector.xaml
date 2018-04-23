@@ -1,0 +1,128 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" 
+    xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements">
+
+    <DataTemplate x:Key="{dxt:DocumentSelectorElementsThemeKey ResourceKey=Template}">
+        <Grid Width="Auto" Height="Auto" Background="{x:Null}">
+            <Border x:Name="shadow" Background="Black" CornerRadius="7" Margin="6,6,0,0" Opacity="0.15"/>
+            <Border x:Name="window" Background="#A0000000" CornerRadius="6" Margin="3">
+                <Grid Margin="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border x:Name="header" CornerRadius="5,5,0,0" BorderThickness="0,0,0,1" BorderBrush="#FFCDD3DA" Background="#FFA7C48E">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left" Margin="12,8,12,8">
+                            <Image VerticalAlignment="Top"
+								HorizontalAlignment="Left"
+								Margin="0,0,6,0"
+								Stretch="None"
+								Width="Auto"
+								Height="Auto"
+								Source="{Binding Path=(dx:DockLayoutManager.LayoutItem).CaptionImage}"/>
+                            <StackPanel>
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontWeight="Bold" Text="{Binding (dx:DockLayoutManager.LayoutItem).Caption}"/>
+                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding (dx:DockLayoutManager.LayoutItem).Description}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border x:Name="content" Background="White" Grid.Row="1">
+                        <ContentPresenter x:Name="PART_ContainerContent" Content="{Binding}" Margin="12"/>
+                    </Border>
+                    <Border x:Name="footer"
+						MinHeight="25"
+						Background="#FFEFFFE3"
+						CornerRadius="0,0,5,5"
+						Grid.Row="2"
+						BorderThickness="0,1,0,0"
+						BorderBrush="#FFCBD3DC">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,3,12,5" Content="{Binding (dx:DockLayoutManager.LayoutItem).FooterDescription}"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </DataTemplate>
+
+    <ControlTemplate x:Key="{dxt:DocumentSelectorElementsThemeKey ResourceKey=ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+        <Grid Width="Auto" Height="Auto" Background="#00FFFFFF">
+            <Border x:Name="hover" Visibility="Hidden" CornerRadius="2,2,2,2" Padding="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFDBCE99" Offset="0"/>
+                        <GradientStop Color="#FFBBA67F" Offset="1"/>
+                        <GradientStop Color="#FFB9A074" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border x:Name="border2" Width="Auto" Height="Auto" Visibility="Visible" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFFFD" Offset="0"/>
+                            <GradientStop Color="#FFFFF9E0" Offset="1"/>
+                            <GradientStop Color="#FFFFF1BA" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border x:Name="border1" CornerRadius="1,1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFDF2" Offset="0"/>
+                                <GradientStop Color="#FFFFEEAE" Offset="1"/>
+                                <GradientStop Color="#FFFFEA9A" Offset="0.5"/>
+                                <GradientStop Color="#FFFFDC58" Offset="0.5"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border x:Name="selected" Visibility="Hidden" CornerRadius="2,2,2,2" Padding="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9F7559" Offset="0"/>
+                        <GradientStop Color="#FFC6C0B1" Offset="1"/>
+                        <GradientStop Color="#FF8E8165" Offset="0.1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border x:Name="border3" Width="Auto" Height="Auto" Visibility="Visible" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFBB9F7C" Offset="0"/>
+                            <GradientStop Color="#FFFFDE70" Offset="1"/>
+                            <GradientStop Color="#FFF8AD61" Offset="0.5"/>
+                            <GradientStop Color="#FFF7952F" Offset="0.5"/>
+                            <GradientStop Color="#FFFDD3A8" Offset="0.1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Border SnapsToDevicePixels="True" BorderThickness="0" Padding="{TemplateBinding Padding}">
+                <ve:CaptionControl DataContext="{Binding}" Margin="3,2,3,2"/>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Visibility" TargetName="selected" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Visibility" TargetName="hover" Value="Visible"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=ContentPreview}">
+        <Grid SnapsToDevicePixels="True" Margin="0,0,-2,0" VerticalAlignment="Top">
+            <Border x:Name="shadow1" Background="#FF000000" Margin="2,2,0,0" Opacity="0.15"/>
+            <Border Margin="0,0,2,2" Padding="12" Background="#FFFFFFFF" BorderBrush="#FF849F71" BorderThickness="1">
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Border>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=ContentPreview}">
+        <Grid SnapsToDevicePixels="True" Margin="0,0,-2,0" VerticalAlignment="Top">
+            <Border x:Name="shadow1" Background="#FF000000" Margin="2,2,0,0" Opacity="0.15"/>
+            <Border Margin="0,0,2,2" Padding="1" Background="#FFFFFFFF" BorderBrush="#FF849F71" BorderThickness="1">
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Border>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
